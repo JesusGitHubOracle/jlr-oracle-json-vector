@@ -3,7 +3,7 @@
 Oracle AI Vector Search is designed for Artificial Intelligence (AI) workloads and allows you to query data based on semantics, rather than keywords.
 The VECTOR data type is introduced with the release of Oracle AI Database 26ai, providing the foundation to store vector embeddings alongside business data in the database. Using embedding models, you can transform unstructured data into vector embeddings that can then be used for semantic queries on business data.
 
-Oracle AI database also allows you to run semantic searches over JSON documents stored in the database using the JSON data type. Starting [Oracle 26ai Release Update 23.26.2](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/april-2026-release-update-23.26.2.html)it is possibe to index a JSON field usign Function-Based [Hierarchical Navigable Small World Indexes](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/hierarchical-navigable-small-world-index-syntax-and-parameters.html#example).
+Oracle AI database also allows you to run semantic searches over JSON documents stored in the database using the JSON data type. Starting [Oracle 26ai Release Update 23.26.2](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/april-2026-release-update-23.26.2.html) it is possibe to index a JSON field usign Function-Based [Hierarchical Navigable Small World Indexes](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/hierarchical-navigable-small-world-index-syntax-and-parameters.html#example).
 
 ## Getting Started
 
