@@ -9,7 +9,7 @@ Oracle AI database also allows you to run semantic searches over JSON documents 
 
 This repository provides the scripts and sample files you need to get started with semantic search over JSON documents in Oracle AI Database. Follow these steps:
 
-- Load a [supported ONNX model] (https://docs.oracle.com/en/database/oracle/oracle-database/26/nfcoa/onnx-support.html) into the database.
+- Load a [supported ONNX model](https://docs.oracle.com/en/database/oracle/oracle-database/26/nfcoa/onnx-support.html) into the database.
 - Import a newline-delimited JSON (NDJSON) file into an Oracle JSON collection table.
 - Generate and store vector embeddings in each document.
 - Create a Hierarchical Navigable Small World (HNSW) vector index directly on the JSON field containing the embeddings.
