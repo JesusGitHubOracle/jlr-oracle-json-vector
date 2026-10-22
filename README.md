@@ -68,7 +68,7 @@ The second query filters **after** selecting candidates; it does not find the ne
 
 The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approximate nearest neighbors; 95 is an accuracy target, not a per-result similarity score or guaranteed match percentage.
 
-## Online documentation
+## Reference
 
 - [Oracle AI Vector Search documentation](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/)
 - [Load an ONNX model](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/load_onnx_model-procedure.html)
