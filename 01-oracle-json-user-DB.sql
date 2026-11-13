@@ -18,13 +18,13 @@ GRANT READ, WRITE ON DIRECTORY DATA_PUMP_DIR TO JSON_VECTOR;
 GRANT CREATE MINING MODEL TO JSON_VECTOR;
 GRANT EXECUTE ON DBMS_VECTOR TO JSON_VECTOR;
 
---  Directory for ONNX model import
--- copy ALL_MINILM_L12_V2.onnx to /home/oracle/onnx_models on the database server
+-- Directory for ONNX model import
+
 
 CREATE DIRECTORY ONNX_IMPORT AS '/home/oracle/onnx_models';
 GRANT READ, WRITE ON DIRECTORY ONNX_IMPORT TO JSON_VECTOR;
 
--- Directory for json files,  copy movies.ndjson to /home/oracle on the database server
+-- Directory for movies data 
 CREATE DIRECTORY MOVIES_DIR AS '/home/oracle';
 GRANT READ, WRITE ON DIRECTORY MOVIES_DIR TO JSON_VECTOR;
 

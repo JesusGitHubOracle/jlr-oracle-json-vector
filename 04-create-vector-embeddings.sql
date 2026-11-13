@@ -63,6 +63,7 @@ SELECT
   ) AS documents_with_plot_embedding
 FROM J_MOVIES_EMBEDDINGS;
 
+
 ------------------------------------------------------------------------------------
 PROMPT Query Full JSON document sample
 ------------------------------------------------------------------------------------

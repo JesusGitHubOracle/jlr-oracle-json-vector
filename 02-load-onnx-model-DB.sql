@@ -5,7 +5,12 @@ set pagesize 100
 
 
 /*  
-This script loads the all-MiniLM-L12-v2 ONNX embedding model into Oracle AiDatabase.     
+This script loads the all-MiniLM-L12-v2 ONNX embedding model into Oracle Ai Database.    
+## Option A: server-side files / Base Database Service
+Upload the  ONNX and JSON files from to  your  database server, for example:
+
+   /home/oracle/onnx_models/all_MiniLM_L12_v2.onnx
+   /home/oracle/movies.ndjson
 */
 ------------------------------------------------------------
 prompt DROP model if it exists...

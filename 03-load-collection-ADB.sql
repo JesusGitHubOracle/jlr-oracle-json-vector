@@ -1,6 +1,10 @@
---  Script to Create a JSON Collection Table in Oracle Autonomous Database 
---  First we will create an external table to load the JSON documents from a PAR file in OCI Object Storage 
---  Then we will create a JSON collection table to hold the documents. 
+/*
+Option B: Autonomous Database / Object Storage
+ Upload the ONNX file and movie dataset to your Object Storage bucket. 
+ Replace the URLs in the scripts with your own model and dataset PAR URLs.
+*/
+
+
   
  ---------------------------------------------------------------
  -- Cleanup any existing tables and indexes
