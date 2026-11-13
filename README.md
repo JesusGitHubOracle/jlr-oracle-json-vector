@@ -121,15 +121,7 @@ Question → in-database ONNX embedding → Oracle approximate vector search
 @10-rag-smoke-test.sql
 ```
 
-The smoke test checks SQL invocation, source numbering, distance ordering, correspondence between returned plots and stored JSON, and invalid-input handling. It reads the existing data and model and does not call Ollama. Run `09-rag-demo.sql` to check actual answer generation and review its citations.
-
-The installer checks `USER_ERRORS` and stops if the package fails to compile. The smoke test verifies retrieval and input handling; it does not verify Ollama connectivity or the quality of generated answers. Use `09-rag-demo.sql` against your configured endpoint to check answer generation and source citations.
-
-If you receive `ORA-24247`, check the application's network ACL. Connection/timeouts require checking reachability from the database host. For package compilation problems, inspect `USER_ERRORS` and verify direct grants. If no sources survive, inspect `movie_rag.retrieve` with a larger distance threshold before changing the model.
-
-Oracle references: [text generation API](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/utl_to_generate_text-dbms_vector.html), [supported provider endpoints](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/supported-third-party-provider-operations-and-endpoints.html).
-
-## Further reading
+## Further reading and links
 
 ### Related examples
 
