@@ -63,12 +63,7 @@ The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approx
 
 ## Extend vector search with RAG
 
-Scripts 07–10 add retrieval-augmented generation to the existing movie collection. They reuse `J_MOVIES_EMBEDDINGS`, the in-database `ALL_MINILM_L12_V2` ONNX model, and the JSON vector expression indexed by `MOVIES_PLOT_HNSW_IDX`. There is no new embedding model or movie reload. Ollama is used only to write answers.
 
-```text
-Question → in-database ONNX embedding → Oracle approximate vector search
-         → numbered movie plots → Ollama → answer with supporting sources
-```
 
 | File | Purpose |
 | --- | --- |
@@ -115,12 +110,6 @@ Question → in-database ONNX embedding → Oracle approximate vector search
 
 **The database server makes the Ollama request.** `localhost` means the database host/container, not the SQL client's machine. A container may require a host-reachable address such as `host.docker.internal`, depending on its configuration. Autonomous Database needs an endpoint reachable under its network policies; a laptop's localhost is not reachable from the cloud database. Routing, firewalls, and HTTPS trust must be configured where applicable. `host: local` disables provider credentials; it does not change the URL's destination. Keep unauthenticated Ollama endpoints restricted to your private environment.
 
-### Verify the RAG extension
-
-```sql
-@10-rag-smoke-test.sql
-```
-
 ## Further reading and links
 
 ### Related examples
@@ -150,7 +139,7 @@ Question → in-database ONNX embedding → Oracle approximate vector search
 - [Oracle JSON Insights](https://www.oracle.com/database/what-is-json/technologies/database/)
 - [Install and run Ollama on Linux](https://docs.ollama.com/linux)
 
-### ## Dataset and embedding model
+### Dataset and embedding model
 
 - [Sample movie dataset — ZIP archive](https://github.com/JesusGitHubOracle/jlr-oracle-json-vector/blob/main/movies-json.zip)
 - [Oracle’s pretrained ONNX model catalog](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/import-pretrained-models-onnx-format-vector-generation-database.html) — Download the `all_MiniLM_L12_v2` model and extract the archive to obtain `all_MiniLM_L12_v2.onnx`
