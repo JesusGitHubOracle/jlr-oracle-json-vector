@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS j_movies CASCADE CONSTRAINTS PURGE;
 -- Option A: if Oracle Autonomous Database
 -- OCI PAR URL for the movies.ndjson file in OCI Object Storage.  
 
-define movies_par_url = 'https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/AZGoEtDMDnDRjsdPNiB9ARjn9kUTnHL9YV_xBcDx71bET11_EnHooQCv0Pn0sdOo/n/fro8fl9kuqli/b/bucket-for-ajd-data/o/search/movies.ndjson';
+define movies_par_url = '<your_par_url>/movies.ndjson';
 
 BEGIN
   DBMS_CLOUD.CREATE_EXTERNAL_TABLE(

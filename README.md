@@ -13,8 +13,6 @@ This repository provides the scripts and sample files for semantic search and RA
 - Run semantic searches directly from SQL.
 - Extend retrieval with Ollama-generated answers and numbered supporting sources.
 
-
-
 ## Components
 
 - **Model:** `ALL_MINILM_L12_V2`, imported from `all_MiniLM_L12_v2.onnx`.
@@ -26,7 +24,7 @@ This repository provides the scripts and sample files for semantic search and RA
 
 ## Scripts and brief description
 
-There are separate setup scripts for Autonomous Database (`-ADB.sql`) and a database with access to server-side files (`-DB.sql`, such as OCI Base Database Service). Embedding generation, indexing, and search use the same scripts on both paths.
+There are separate setup scripts for Autonomous Database (`-ADB.sql`) and a database with access to server-side files (`-DB.sql` and -free.sql). Embedding generation, indexing, and search use the same scripts on both paths.
 
 | File | Purpose |
 | --- | --- |
@@ -44,10 +42,7 @@ There are separate setup scripts for Autonomous Database (`-ADB.sql`) and a data
 | [08-rag-setup.sql](08-rag-setup.sql) | Run as the application user to check the existing model and embeddings, create the answer-generation configuration, and install `MOVIE_RAG.RETRIEVE` and `MOVIE_RAG.ASK`. Existing configuration is retained. |
 | [09-rag-demo.sql](09-rag-demo.sql) | Demonstrates retrieval without an LLM call, then generates movie recommendations and plot comparisons with numbered supporting sources. |
 | [movies.ndjson](movies.ndjson) | Movie documents, one JSON document per line. The supplied file contains 21,349 documents. |
-| [Oracle’s pretrained ONNX model catalog](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/import-pretrained-models-onnx-format-vector-generation-database.html) | Follow the download link for `all_MiniLM_L12_v2` and extract the archive to obtain `all_MiniLM_L12_v2.onnx`, the embedding model used in this repository. |
-
-
-
+| [Oracle’s pretrained ONNX model catalog](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/import-pretrained-models-onnx-format-vector-generation-database.html) | Follow the download link for `all_MiniLM_L12_v2` and extract the archive to obtain `all_MiniLM_L12_v2.onnx`, the embedding model used in this repository.
 
 ## Semantic Search examples
 
@@ -63,8 +58,6 @@ The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approx
 
 ## Extend vector search with RAG
 
-
-
 | File | Purpose |
 | --- | --- |
 | [07-rag-admin.sql](07-rag-admin.sql) | Optional administrator grants and host/port network ACL for the existing application schema. |
@@ -74,14 +67,14 @@ The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approx
 
 ### RAG setup
 
-1. Complete the original database/model/data/embedding/index steps (scripts 01–05) if they are not already installed. **Do not rerun the existing user-creation scripts on a working demo:** those scripts recreate the schema. The new RAG scripts do not drop the movies, model, or index.
+1. Complete the original database/model/data/embedding/index steps (scripts 01–05) if they are not already installed. 
 2. Install [Ollama](https://ollama.com/download) on a host reachable from the database, start it, and download the answer model:
 
    ```sh
    ollama pull gemma3:4b
    ```
 
-3. As an administrator in the application PDB, review and run `07-rag-admin.sql`. Edit the schema name, host, and port to match your environment. The existing application user needs `CREATE TABLE`, `CREATE PROCEDURE`, tablespace quota, a direct `EXECUTE` grant on `SYS.DBMS_VECTOR`, and network access to the Ollama endpoint. The Oracle installation must provide this package and its required components.
+3. As an administrator in the application PDB, review and run `07-rag-admin.sql`. Edit the schema name, host, and port to match your environment.  
 4. Connect as the existing application user (`JSON_VECTOR` by default) in SQLcl or SQL*Plus and run:
 
    ```sql
@@ -102,14 +95,6 @@ The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approx
 
    For Ollama on the database host, the endpoint may be `localhost`; for a separate VM, use its reachable private IP or hostname. Change the port if your service uses a different one. The Oracle ACL and provider URL must refer to the intended destination. You can change the model by updating `$.model` in the same JSON configuration; that model must already be available in Ollama.
 
-6. Run the examples:
-
-   ```sql
-   @09-rag-demo.sql
-   ```
-
-**The database server makes the Ollama request.** `localhost` means the database host/container, not the SQL client's machine. A container may require a host-reachable address such as `host.docker.internal`, depending on its configuration. Autonomous Database needs an endpoint reachable under its network policies; a laptop's localhost is not reachable from the cloud database. Routing, firewalls, and HTTPS trust must be configured where applicable. `host: local` disables provider credentials; it does not change the URL's destination. Keep unauthenticated Ollama endpoints restricted to your private environment.
-
 ## Further reading and links
 
 ### Related examples
@@ -117,6 +102,11 @@ The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approx
 - [JSON Full-Text Search with Oracle AI Database — example repository](https://github.com/JesusGitHubOracle/jlr-oracle-search)
 - [Oracle JSON: From relational to document store](https://github.com/JesusGitHubOracle/jlr-oracle-json)
 
+### Background and related blogs 
+
+- [Search and Chat with Your JSON Documents Using Oracle AI Database](https://medium.com/@jesus.leonardo.robles/search-and-chat-with-your-json-documents-using-oracle-ai-database-32629956fcac)
+- [Database & Cloud Technology Blog — JSON articles](https://blogs.oracle.com/coretec/category/crt-json)
+- [Oracle JSON Insights](https://www.oracle.com/database/what-is-json/technologies/database/)
 
 ### Online documentation
 
@@ -133,11 +123,6 @@ The queries use `FETCH APPROX ... WITH TARGET ACCURACY 95`. This requests approx
 - [Load an ONNX model with DBMS_VECTOR.LOAD_ONNX_MODEL](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/load_onnx_model-procedure.html)
 - [Generate answers with DBMS_VECTOR.UTL_TO_GENERATE_TEXT](https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/utl_to_generate_text-dbms_vector.html)
 
-### Background and installation
-
-- [Database & Cloud Technology Blog — JSON articles](https://blogs.oracle.com/coretec/category/crt-json)
-- [Oracle JSON Insights](https://www.oracle.com/database/what-is-json/technologies/database/)
-- [Install and run Ollama on Linux](https://docs.ollama.com/linux)
 
 ### Dataset and embedding model
 

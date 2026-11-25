@@ -27,7 +27,7 @@ begin
   dbms_vector.load_onnx_model_cloud(
     model_name => 'ALL_MINILM_L12_V2',
     credential => null,
-    uri        => 'https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/hWtxHRNpBnQKaxtj5KtGVyQu4VYHqtuqAY4PUReK_6NxCeZRl94vm07lMGZAuOih/n/fro8fl9kuqli/b/bucket-for-ajd-data/o/vector-data/all_MiniLM_L12_v2.onnx',
+    uri        => '<par_url>/all_MiniLM_L12_v2.onnx',
     metadata   => json('{
       "function": "embedding",
       "embeddingOutput": "embedding",
